@@ -9,13 +9,3 @@ public boolean isSameTree(TreeNode p, TreeNode q)
 
     return p.data == q.data && isLeftSame && isRightSame;
 }
-
-/*CREATE A BINARY SEARCH TREE - HELPER FUNCTION*/
-public static TreeNode createMinimalBST(int array[])
-{
-    return createMinimalBST(array, 0, array.length-1);
-}
-public void print()
-{
-    BTreePrinter.printNode(this);
-}
