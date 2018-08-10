@@ -18,10 +18,11 @@ def two_sum_indices(array, target):
         diff = target-item
         if item not in distinguisher:
             distinguisher.add(diff)
+            print "added " + str(diff)
         else:
             result.append(i)
             result.append(array.index(diff))
     return sorted(result)
 
-print "NUMBERS THAT MAKE THE TARGET:", two_sum_all_numbers(array=[4,3,2,7,5], target=6)
-print "INDICES OF NUMBERS THAT MAKE THE TARGET:", two_sum_indices(array=[4,3,2,7,5], target=6)
+print "NUMBERS THAT MAKE THE TARGET:", two_sum_all_numbers(array=[3,2,4], target=6)
+print "INDICES OF NUMBERS THAT MAKE THE TARGET:", two_sum_indices(array=[3,2,4], target=6)

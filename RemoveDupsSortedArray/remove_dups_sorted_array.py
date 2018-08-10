@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#LeetCode OJ Problem #29 - remove duplicates and return length of resulting array
+#LeetCode OJ Problem #29 - remove duplicates and return length of resulting array needs to be done in place and in o(1) space
 #KEY - We actually do not want to track dups and remove, we just want to return the Length
 #of the array without dups.
 
