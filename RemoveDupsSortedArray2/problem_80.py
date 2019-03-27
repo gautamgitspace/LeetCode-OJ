@@ -5,7 +5,7 @@
 
 * key -> sorted, so numbers won't appear our of order
 * clause -> CANNOT allocate memory to new lists/arrays
-* how -> keep scanning subsequent occurring indices and if exceeds count of 2, i.e. seen for the 3rd time, move it to the last.
+* how -> keep scanning subsequent occurring indices and if exceeds count of 2, i.e. seen for the 3rd time, move it to the last or just delete it (this maintains the len of list)
 """
 
 def _prune (arr):
