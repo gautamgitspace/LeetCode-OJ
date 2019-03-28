@@ -39,7 +39,7 @@ class Solution(object):
         high = int(right[-1])
         mid = (low + high)/2
 
-        #do a binary search on dummy and nums now
+        #do a binary search on right and left now
         if target > mid:
             if target in right:
                 return nums.index(target)
