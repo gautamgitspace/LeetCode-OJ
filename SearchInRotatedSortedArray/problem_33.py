@@ -1,60 +1,59 @@
 #!/usr/bin/python
 class Solution(object):
     def n_search(self, nums, target):
+        """
+        time complexity - Bad: O(n)
+        list.index will O(n) as well
+        """
         for i, item in enumerate(nums):
             if target == item:
                 return i
             else:
                 continue
         return -1
-    def log_n_search(self, nums, target):
+
+    def log_n_search_flex(self, nums, target):
         """
-        [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]
-        here pivot point is element 2 (idx 2) after
-        which the flip happens.
+        time complexity - Good: O(logn)
+        leverages binary search
 
-        [SOL 0] - Good time complexity
-        If we are able to find out the pivot point, we can have
-        two sorted arrays and do a binary search in O(logn)
+        problem #81
+        takes care of duplicate entries but worst case time complexity
+         for such lists for eg. [1,1,1,1,1,2,2,3] is O(n)
 
-        [SOL 1] - Bad time complexity
-        No use doing a sort as that will be another expensive
-        operation of O(nlogn). No use doing reverse and other
-        stuff either.
+        if you plan to remove the dups first, you'll end up Using
+        extra structure and also adding O(n) time to your approach
         """
-        i = 1
-        length = len(nums)
-        flip = 0
-        while i < length:
-            if nums[i] > nums[i-1]:
-                i += 1
-                continue
+        if not nums:
+            return -1
+
+        low, high = 0, len(nums) - 1
+
+        while low <= high:
+            mid = (low + high) / 2
+            if target == nums[mid]:
+                return mid
+
+            # normal ascending flow:
+            if nums[low] <= nums[mid]:
+                # target lies between low and mid - high becomes left of mid
+                # othwewise low becomes right of mid
+                if nums[low] <= target <= nums[mid]:
+                    high = mid - 1
+                else:
+                    low = mid + 1
             else:
-                flip = i
-                break
-        left = nums[flip:]
-        right = nums[:flip]
-
-        low = int(left[0])
-        high = int(right[-1])
-        mid = (low + high)/2
-
-        #do a binary search on right and left now
-        if target > mid:
-            if target in right:
-                return nums.index(target)
-            else:
-                return -1
-        else:
-            if target in left:
-                return nums.index(target)
-            else:
-                return -1
+                # target lies between mid and high - low becomes right of mid
+                # otherwise high becomes left of mid
+                if nums[mid] <= target <= nums[high]:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+        return -1
 
 
-nums = [4,5,6,7,0,1,2]
+nums = [4,1,2,3]
 sol = Solution()
-print sol.n_search(nums, 7)
-print sol.n_search(nums, 14)
-print sol.log_n_search(nums, 2)
-print sol.log_n_search(nums, 14)
+#print sol.n_search(nums, 5)
+print nums
+print "target resides at idx " + str(sol.log_n_search_flex(nums, 1))
