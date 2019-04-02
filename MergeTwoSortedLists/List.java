@@ -96,6 +96,9 @@ class LinkedList {
       Node wrkgNode = head;
       while (l1 != null && l2 != null) {
         if (l1.data > l2.data) {
+          /* if l2.data is smaller, we start with this
+          as the head in our resultant list, otherwise
+          we start with l1. */
           wrkgNode.next = l2;
           l2 = l2.next;
         } else {
@@ -103,7 +106,7 @@ class LinkedList {
           l1 = l1.next;
         }
         wrkgNode = wrkgNode.next;
-      }//while ends
+      }
 
       /* process the last element */
       if (l1 != null) {
