@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+"""
+key is sort the words in the list. Once this is done, the first
+and the last words will be the most sorted ones. Then just compare
+the alphabets one by one until we hit a different one.
+"""
+
 class Stack:
 
     def __init__(self):
@@ -27,13 +33,9 @@ class Stack:
                 break
         return str
 
-
 if __name__ == "__main__":
     list = ["abc", "abcd", "abcde", "acbdhj"]
-    list2 = []
-
     stack = Stack()
-
     for items in list:
         stack.push(items)
     print stack.longest_prefix()
