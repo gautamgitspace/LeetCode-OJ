@@ -25,24 +25,21 @@ class Solution(object):
 
         l = 0
         r = len(nums) - 1
-        ptr = ""
 
         while (l <= r):
-            mid = (l+r)/2
+            mid = l+ (r-l)/2
             if target == nums[mid]:
                 return mid
             elif target > nums[mid]:
                 l = mid + 1
-                ptr = "r"
             elif target < nums[mid]:
                 r = mid - 1
-                ptr = "l"
 
 
 if __name__ == "__main__":
     sol = Solution()
     nums = [2,4,9,10,15]
-    target = 1
+    target = 15
     result = sol.searchInsert(nums, target)
     if  result is None:
         print sol.searchInsertIndex(nums, target)

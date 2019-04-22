@@ -19,9 +19,10 @@ class Solution(object):
                 r = mid - 1
         return l
 
+
 if __name__ == "__main__":
     sol = Solution()
     nums = [2,4,9,10,15]
-    target = 5
+    target = 11
     result = sol.searchInsert(nums, target)
     print result
