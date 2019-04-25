@@ -11,6 +11,16 @@ rotate 3 steps to the right: 0->1->2->NULL
 rotate 4 steps to the right: 2->0->1->NULL
 */
 
+/*  For large values of k, the usual delete at end and insert at
+ *  beginning will be time consuming. The idea is to think of list
+ *  as a circle. Another approach is that we need to put elements
+ *  after (len-k%len)th element to the beginning.
+ *
+ *  Say if array = {1,2,3}, k=2, move the list after
+ *  3-2%1 th node. i.e. 1st node => 3,1,2 and 2,3,1. so we move
+ *  2,3 which is after 1st node to the begninning
+ */
+
 import java.util.Scanner;
 import java.util.*;
 
@@ -69,13 +79,10 @@ class LinkedList {
     public void insertAtStart(int data) {
         Node nptr = new Node(data, null);
         size++ ;
-        if(start == null)
-        {
+        if(start == null) {
             start = nptr;
             end = start;
-        }
-        else
-        {
+        } else {
             nptr.setLink(start);
             start = nptr;
         }
@@ -83,21 +90,18 @@ class LinkedList {
 
     public void display() {
         System.out.print("\nSingly Linked List = ");
-        if (size == 0)
-        {
+        if (size == 0) {
             System.out.print("empty\n");
             return;
         }
-        if (start.getLink() == null)
-        {
+        if (start.getLink() == null) {
             System.out.println(start.getData() );
             return;
         }
         Node ptr = start;
         System.out.print(start.getData()+ "->");
         ptr = start.getLink();
-        while (ptr.getLink() != null)
-        {
+        while (ptr.getLink() != null) {
             System.out.print(ptr.getData()+ "->");
             ptr = ptr.getLink();
         }
@@ -113,9 +117,7 @@ class LinkedList {
           prev = head;
           head = head.next;
         }
-        //System.out.println("[DEBUG] prev: " + prev.data);
-        //System.out.println("[DEBUG] to_be_swapped: " + head.data);
-        //now l1 has the last element and prev has one before it.
+        // at this point l1 has the last element and prev has one before it.
         temp = head;
         prev.next = null;
 
@@ -131,14 +133,7 @@ class LinkedList {
       }
       return start;
     }
-    /*  For large values of slow, the usual delete at end and insert at
-     *  beginning will be time consuming. The idea is to think of list
-     *  as a circle. Basically we need to put elements after len-k%len
-     *  to the beginning.
-     *  Say if array = {1,2,3}, k=2, move the list after
-     *  3-2%1 th node. i.e. 1st node => 3,1,2 and 2,3,1. so we move
-     *  2,3 which is after 1st node to the begninning
-     */
+
     public Node rotateListModulas(Node l1, int k) {
       if ((l1 == null) || (l1.next == null))
         return l1;
@@ -149,14 +144,14 @@ class LinkedList {
         copyHead = copyHead.next;
         len++;
       }
-      // now make it circular
+      // make the list circular
       copyHead.next = l1;
-      //now keep moving head until len-k%len instances
-      //basically we are finding the pivot element here
+      //now keep moving head until it reaches (len-k%len)the element
+      //basically we are finding the new head of the rotated list
       for (int i = len - k % len; i > 1; i--) {
         l1 = l1.next;
       }
-      // now cut the list again
+      // now cut the list again and point cutting point to null
       copyHead = l1.next;
       l1.next = null;
 
@@ -174,11 +169,9 @@ class LinkedList {
 
       Node resultHead = new Node();
 
-      // list1.insertAtStart(5);
-      // list1.insertAtStart(4);
-      list1.insertAtStart(3);
-      list1.insertAtStart(2);
-      list1.insertAtStart(1);
+      for (int i = 5; i > 0 ; i--) {
+        list1.insertAtStart(i);
+      }
 
       list1.display();
       resultHead = list1.rotateListModulas(list1.start, 1);
@@ -186,6 +179,5 @@ class LinkedList {
         System.out.println(resultHead.data);
         resultHead = resultHead.getLink();
       }
-
     }
   }
