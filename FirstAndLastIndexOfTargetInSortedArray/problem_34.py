@@ -26,13 +26,14 @@ class Solution(object):
 if __name__ == "__main__":
     sol = Solution()
     nums = [2,4,9,10,10,10,10,10,10,15]
-    target = 10
+    target = 17
     result = []
     first = sol.searchInsert(nums, target)
     """
-    two conditions to handled when 'first' is returned:
+    two conditions to be handled when 'first' is returned as DOES NOT EXIST:
     (a) the target given were to be inserted in the last of the array.
-        In that case, searchInsert would return the len of nums
+        In that case, searchInsert would return the len of nums. This cannot
+        be caught by nums[first]!=target as this condition will overflow.
     (b) the target given were to be inserted somewhere in between.
         In that case, nums[first] should be equal to target.
 
