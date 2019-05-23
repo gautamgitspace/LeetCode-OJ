@@ -4,6 +4,9 @@
 key is sort the words in the list. Once this is done, the first
 and the last words will be the most sorted ones. Then just compare
 the alphabets one by one until we hit a different one.
+
+python do how - accessing alphabets of word at 0 index in the list
+by indices - list[0][i]
 """
 
 class Stack:

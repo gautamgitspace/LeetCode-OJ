@@ -6,6 +6,7 @@ approach 2: O(n)
 """
 
 class Solution(object):
+    # problem 121 O(n2)
     def max_profit_brute_force(self, prices):
         """
         :type prices: List[int]
@@ -31,6 +32,7 @@ class Solution(object):
 
         return max_profit
 
+    # problem 121 O(n)
     def max_profit_efficient(self, prices):
 
         max_profit, min_price = 0, float('inf')
@@ -39,8 +41,13 @@ class Solution(object):
             min_price = min(min_price, price)
             profit = price - min_price
             max_profit = max(max_profit, profit)
-            profit_ledger.append(max_profit)
+        return max_profit
 
+    """
+    problem 122 O(n)
+    Design an algorithm to find the maximum profit.
+    You may complete as many transactions as you like
+    """
     def max_profit_total(self, prices):
 
         total_profit = 0
@@ -49,6 +56,15 @@ class Solution(object):
             if prices[i+1] > prices [i]:
                 total_profit += prices[i+1] - prices[i]
         return total_profit
+
+    """
+    problem 123 O(n)
+    Design an algorithm to find the maximum profit.
+    You may complete at most two transactions
+    """
+    def max_profit_total_but_max_two_trans(self, prices):
+
+
 
 if __name__ == "__main__":
     prices = [7,6,4,3,1]
