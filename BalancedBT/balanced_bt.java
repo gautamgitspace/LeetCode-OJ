@@ -1,8 +1,8 @@
 /* KEY is to check the height of each subtree as we recurse down the root.
  * On each node, we keep on getting heights of L and R subtrees. If subtree
- * is balanced, checkHeight will return actual height, if not balanced, it
- * will return -1. In main, we stop whenever the return value is -1 and
- * we break out and return.
+ * is balanced, checkHeight will return actual height i.e. 1 + max of left
+ * and right, if not balanced, it will return -1. In main, we stop whenever
+ * the return value is -1 and we break out and return false.
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
