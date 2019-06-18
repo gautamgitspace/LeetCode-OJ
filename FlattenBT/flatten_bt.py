@@ -26,12 +26,30 @@ This needs to be done in place
 
 KEY - is that flatten tree looks like the pre-order of the given BT.
 
-Also, if we look closely, flatten tree looks like the reverse order of
-a pre-order. i.e. PRE-ORDER = [ROOT, L, R] and reverse order of pre-order
-= [R, L, ROOT]
+PRE-ORDER: 1,2,3,4,5,6
+REV. PRE-ORDER [R, L, ROOT]: 6,5,4,3,2,1
 
 So we gotta put root in prev in each iteration and make this prev the
-right of current root everytime. and make left current root as None.
+right of current root everytime. and make left current root as None.\
+
+Iteration 1:
+------------
+
+    6
+  /   \
+None  None
+
+Iteration 2:
+------------
+
+prev = root = 6
+current root = 5
+
+    5
+  /   \
+None   6
+
+Next, 5 becomes prev. and so on ...
 """
 
 class Solution (object):
