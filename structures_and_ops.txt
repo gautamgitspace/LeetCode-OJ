@@ -1,0 +1,32 @@
+========================================
+BASIC WAKE UP ROUTINE STRUCTURES AND OPS
+========================================
+
+# Trees
+0. Traversals - Pre, In and Post
+1. Traversals - level order
+2. Depth of Tree - Min and Max
+3. BST validator
+4. Balanced BT
+5. BT - all paths
+6. Build Tree - From In and Pre Order
+7. Mirror image trees
+8. Common ancestor
+
+# Lists
+0. Add a node - start, middle, end, kth
+1. Delete a node - start, middle, end, kth
+2. Cycle - Detection of loop, returning point of loop
+3. Sum of two lists
+4. Merge sort two lists
+5. List sort
+6. Pivot partition list
+7. Rotate list
+
+# Stacks and queues
+
+
+# Arrays
+
+
+# Maps
