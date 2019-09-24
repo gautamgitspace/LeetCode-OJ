@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 class Solution(object):
     def subarraySum(self, nums, k):
         """
@@ -35,6 +37,7 @@ class Solution(object):
         is a stretch where k is 10
         """
         count = 0
+        max = 0
         sums = 0
         d = dict()
         d[0] = 1
@@ -45,3 +48,37 @@ class Solution(object):
             d[sums] = d.get(sums,0) + 1 # add running sum element to d
             # print d
         return(count)
+    """
+    this is the second problem where we have to return the
+    maximum length of the subarray that sums up to k.
+
+    Here we store d[running sum] : index and we start with
+    0 : -1 meaning that running sum of 0 is at index -1 (before 0)
+
+    Then if running sum - k is found in dict,  we store the length
+    of sub array in max. length will be given by current index -
+    index stored in dict.
+
+    if not found, we store the sum in d against its index or update
+    it if it already exists
+
+    """
+    def max_sub_array_sum_equal_k(self, nums, k):
+        d = {}
+        d[0] = -1
+        sums, maximum = 0, 0
+        for i in range(len(nums)):
+            sums += nums[i]
+            if sums-k in d:
+                maximum = max(maximum, i - d[sums-k])
+            if sums not in d:
+                d[sums] = i
+        return maximum
+
+
+if __name__ == "__main__":
+    s = Solution()
+    nums = [1, -1, 5, -2, 3]
+    k = 3
+    #print s.subarraySum(nums, k)
+    print s.max_sub_array_sum_equal_k(nums, k)
