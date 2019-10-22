@@ -8,22 +8,32 @@ class TimeMap:
 
     def get(self, key: str, timestamp: int) -> str:
         if key in self._dic:
+            # fetch list at given key
             li = self._dic[key]
+            # init L and R of the list
             l, r = 0, len(self._dic[key]) - 1
 
+            # return empty string if asked for what
+            # the KV store does not have stored
             if li[l][1] > timestamp:
                 return ""
+            # return the last one if timestamp
+            # is in range or is equal to
             elif li[r][1] <= timestamp:
                 return li[r][0]
+
+            # do a BS on the TS
             else:
                 while l <= r:
                     mid = l + (r - l) // 2
 
+                    # found
                     if li[mid][1] == timestamp:
                         return li[mid][0]
-
+                    # adjust l
                     if li[mid][1] < timestamp:
                         l = mid + 1
+                    # adjust r
                     else:
                         r = mid - 1
 
