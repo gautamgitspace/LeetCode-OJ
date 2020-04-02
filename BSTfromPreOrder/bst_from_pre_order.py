@@ -28,3 +28,17 @@ class Solution(object):
         node.left = self.bstFromPreorder(preorder[1:i])
         node.right = self.bstFromPreorder(preorder[i:])
         return node
+
+    def anotherOne(self, preorder):
+        if not preorder:
+            return None
+        node = TreeNode(preorder[0])
+
+        # fabrcate new left and right pruned preorder lists
+        left = [v for v in preorder[1:] if v < node.val]
+        right = [v for v in preorder[len(left)+1:] if v > node.val]
+
+        node.left = self.bstFromPreorder(left)
+        node.right = self.bstFromPreorder(right)
+
+        return node
