@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""
+Given an array of integers and an integer k, you need to find
+the total number of continuous subarrays whose sum equals to k.
+"""
 
 class Solution(object):
     def subarraySum(self, nums, k):
@@ -10,6 +14,7 @@ class Solution(object):
         """
         THOUGHT PROCESS:
         this can be solved by running sum approach
+        the keyword 'continuous' should trigger this
 
         say for array [3,2,5,3,2,4] and k = 10,
         running sum:  [3,5,10,13,15,19]
@@ -35,6 +40,12 @@ class Solution(object):
         Note that from previous discussion:
         we have established that [running element - k]
         is a stretch where k is 10
+
+        sample d for [3,2,5,3,2,4]
+        d {0 : 1, 3 : 1, 5 : 1, 10 : 1, 13 : 1, 15 : 1, 19 : 1}
+                                   ^       ^       ^
+                                 c = 1   c = 2   c = 3
+        total count = 3
         """
         count = 0
         max = 0
@@ -70,6 +81,7 @@ class Solution(object):
         for i in range(len(nums)):
             sums += nums[i]
             if sums-k in d:
+                # i = curr idx, d[sums-k] = previous stored idx
                 maximum = max(maximum, i - d[sums-k])
             if sums not in d:
                 d[sums] = i
@@ -78,7 +90,7 @@ class Solution(object):
 
 if __name__ == "__main__":
     s = Solution()
-    nums = [1, -1, 5, -2, 3]
-    k = 3
-    #print s.subarraySum(nums, k)
-    print s.max_sub_array_sum_equal_k(nums, k)
+    nums = [2,3,1,2,4,3]
+    k = 7
+    print s.subarraySum(nums, k)
+    #print s.max_sub_array_sum_equal_k(nums, k)
