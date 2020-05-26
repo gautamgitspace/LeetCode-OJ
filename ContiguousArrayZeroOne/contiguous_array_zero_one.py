@@ -5,7 +5,7 @@ imagine k to be 0
 
 so [1,0,1,0] becomes [1,-1,1,-1]
 and cont. arrays that have k as 0 are [1,-1] and [1,-1,1,-1]
-so we return 4
+so we return 4, max of the two.
 
 in case of [1,0,1] becomes [1,-1,1] and we return [1,-1] or [-1,1]
 both are of length 2
