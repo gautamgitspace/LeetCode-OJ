@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 
 """
+- begins with vowel -> append 'ma' to the end of the word
+- begins with a consonant -> remove first letter and append
+  at the end, then add 'ma'
+- add 'a' to end of each word per its index in sentene
+
+Example:
+
 Input: "I speak Goat Latin"
 Output: "Imaa peaksmaaa oatGmaaaa atinLmaaaaa"
 """
@@ -13,26 +20,21 @@ def goat_latin(S):
     for i in range(len(data)):
         curr = data[i]
         first_alphabet = curr[0]
-        # vowels case
+
         if first_alphabet in vowels:
             curr += 'ma'
             worker.append(''.join(curr))
-        # not vowels case
-        if first_alphabet not in vowels:
-            last = curr[-1]
+        
+        elif first_alphabet not in vowels:
             curr = curr[1:] + first_alphabet + 'ma'
             worker.append(''.join(curr))
 
-    # at this point we have enverything in worker
-    # convert each word to list, append a i times
-    # and finally add all to result and return
     for i, item in enumerate(worker):
-        curr = list(item)
-        curr.append('a' * (i+1))
-        result.append(''.join(curr))
+        item += 'a' * (i+1)
+        result.append(item)
 
-    return ' '.join(result)
-
+    return result
+   
 
 if __name__ == "__main__":
     S = "I speak Goat Latin"
